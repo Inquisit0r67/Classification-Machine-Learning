@@ -10,8 +10,15 @@ fashion_mnist = keras.datasets.fashion_mnist
 
 class_names = ['T-shirt', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
-plt.figure()
-plt.imshow(train_images[0])
-plt.colorbar()
-plt.grid(False)
-plt.show()
+model = keras.Sequential([
+    keras.layers.Flatten(input_shape=(28, 28)),
+    keras.layers.Dense(128, activation=tf.nn.relu),
+    keras.layers.Dense(10, activation=tf.nn.softmax)
+])
+
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+model.fit(train_images, train_labels, epochs=30)
+

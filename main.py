@@ -1,8 +1,6 @@
 from __future__ import absolute_import, division, print_function
 import tensorflow as tf
 from tensorflow import keras
-import numpy as np
-import matplotlib.pyplot as plt
 
 fashion_mnist = keras.datasets.fashion_mnist
 
@@ -20,5 +18,6 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
+model.fit(train_images, train_labels, epochs=5)
 
 
